@@ -8,6 +8,7 @@ class Boxen::Preflight::Homebrew < Boxen::Preflight
   end
 
   def ok?
-    !File.exist? "/usr/local/Library/Homebrew"
+    check = ENV['BOXEN_CHECK_HOMEBREW'] || 'yes'
+    check != 'yes' || !File.exist?("/usr/local/Library/Homebrew")
   end
 end
